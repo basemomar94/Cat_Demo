@@ -15,8 +15,8 @@ interface CatsDao {
     fun insertAllBreeds(catsList: List<BreedItem>)
 
     @Query("SELECT * FROM cats")
-    fun getAllBreeds(): Flow<List<BreedItem>>
+    fun getAllBreeds(): List<BreedItem>
 
     @Query("SELECT * FROM cats WHERE id=:breedId")
-    fun getCatById(breedId: String): Flow<BreedItem>
+    fun getCatById(breedId: String): BreedItem
 }
