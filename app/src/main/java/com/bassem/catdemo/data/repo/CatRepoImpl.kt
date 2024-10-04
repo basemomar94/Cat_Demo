@@ -7,9 +7,7 @@ import com.bassem.catdemo.data.remote.CatService
 import com.bassem.catdemo.utils.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.retry
 import kotlinx.coroutines.withContext
-import java.io.IOException
 import javax.inject.Inject
 
 class CatRepoImpl @Inject constructor(private val service: CatService, private val dao: CatsDao) :
