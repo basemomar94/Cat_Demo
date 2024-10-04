@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
 interface CatService {
-    @GET("breeds?limit=10&page=0")
+    @GET("breeds?limit=30&page=0")
     suspend fun getCatsBreeds(): List<BreedItem>
 
     companion object {
