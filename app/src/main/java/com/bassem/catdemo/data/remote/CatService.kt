@@ -9,7 +9,7 @@ import retrofit2.http.GET
 
 interface CatService {
     @GET("breeds?limit=10&page=0")
-    suspend fun getCatsBreeds(): BreedItem
+    suspend fun getCatsBreeds(): List<BreedItem>
 
     companion object {
         private const val BASE_URL = "https://api.thecatapi.com/v1/"

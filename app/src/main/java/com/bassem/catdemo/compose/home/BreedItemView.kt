@@ -31,12 +31,12 @@ fun PreviewBreedItem() {
 
 @Composable
 fun BreedListItem(breedItem: BreedItem, onClick: () -> Unit) {
-    BreedViewItem(name = breedItem.name, imageUrl = breedItem.image.url, onClick = onClick)
+    BreedViewItem(name = breedItem.name, imageUrl = breedItem.image?.url, onClick = onClick)
 }
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun BreedViewItem(name: String, imageUrl: String, onClick: () -> Unit) {
+fun BreedViewItem(name: String, imageUrl: String?, onClick: () -> Unit) {
     Card(
         onClick = onClick,
         modifier = Modifier.padding(dimensionResource(id = R.dimen.card_side_margin))
