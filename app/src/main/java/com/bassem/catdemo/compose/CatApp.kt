@@ -1,12 +1,10 @@
 package com.bassem.catdemo.compose
 
-import android.app.Activity
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.bassem.catdemo.compose.details.DetailsScreen
 import com.bassem.catdemo.compose.favorites.FavoritesScreen
 import com.bassem.catdemo.compose.home.HomeScreen
