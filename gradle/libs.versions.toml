@@ -28,7 +28,7 @@ room = "2.6.1"
 viewModelCompose = "2.8.6"
 retrofit = "2.11.0"
 version-catalog-update = "0.8.4"
-
+serialization = "1.6.21"
 
 
 [libraries]
@@ -80,4 +80,5 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 version-catalog-update = { id = "nl.littlerobots.version-catalog-update", version.ref = "version-catalog-update" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "serialization" }
 

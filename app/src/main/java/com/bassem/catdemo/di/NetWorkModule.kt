@@ -1,4 +1,4 @@
-package com.bassem.di
+package com.bassem.catdemo.di
 
 import com.bassem.catdemo.data.remote.CatService
 import dagger.Module

@@ -1,4 +1,4 @@
-package com.bassem.catdemo.compose.home
+package com.bassem.catdemo.ui.compose.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

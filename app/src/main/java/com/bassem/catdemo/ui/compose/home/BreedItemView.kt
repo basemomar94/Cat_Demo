@@ -1,4 +1,4 @@
-package com.bassem.catdemo.compose.home
+package com.bassem.catdemo.ui.compose.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -22,6 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.bassem.catdemo.R
+import com.bassem.catdemo.ui.compose.helper.CatImage
 import com.bassem.catdemo.data.models.BreedItem
 import com.bassem.catdemo.utils.Logger
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
@@ -68,19 +69,7 @@ fun BreedViewItem(
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
             Box(modifier = Modifier.fillMaxWidth()) {
-                GlideImage(
-                    model = imageUrl,
-                    contentDescription = stringResource(id = R.string.image_of_cat),
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(
-                            dimensionResource(id = R.dimen.image_height)
-                        ),
-                    contentScale = ContentScale.Crop,
-                    loading = placeholder(R.drawable.loading),
-                    failure = placeholder(R.drawable.error)
-
-                )
+                CatImage(imageUrl =imageUrl)
                 Icon(
                     modifier = Modifier
                         .padding(dimensionResource(id = R.dimen.small_padding))

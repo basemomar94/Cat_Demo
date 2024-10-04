@@ -1,4 +1,4 @@
-package com.bassem.catdemo.compose.home
+package com.bassem.catdemo.ui.compose.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth

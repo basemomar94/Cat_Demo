@@ -1,4 +1,4 @@
-package com.bassem.catdemo.compose.home
+package com.bassem.catdemo.ui.compose.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -30,11 +30,10 @@ import androidx.compose.material3.NavigationBarItem
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
+fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), onClick: (String) -> Unit) {
     val breedsResult by viewModel.breedsList.collectAsState(initial = Result.Loading)
     var selectedTab by remember { mutableIntStateOf(0) }
     val tabs = listOf("Cats List", "Favorites")
-
     Scaffold(topBar = { TopAppBar(title = { Text(text = "Cat Breeds") }) },
         bottomBar = {
             NavigationBar {
@@ -69,7 +68,10 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel()) {
                     ) {
                         val breeds = (breedsResult as Result.Success).breedItems
                         items(breeds) { item: BreedItem ->
-                            BreedListItem(item, onCardClick = {}, onFavoriteClick = {})
+                            BreedListItem(
+                                item,
+                                onCardClick = { onClick(item.id) },
+                                onFavoriteClick = {})
 
                         }
                     }

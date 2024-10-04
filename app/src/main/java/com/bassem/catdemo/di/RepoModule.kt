@@ -1,4 +1,4 @@
-package com.bassem.di
+package com.bassem.catdemo.di
 
 import com.bassem.catdemo.data.repo.CatRepo
 import com.bassem.catdemo.data.repo.CatRepoImpl

@@ -1,4 +1,4 @@
-package com.bassem.catdemo.compose.favorites
+package com.bassem.catdemo.ui.compose.favorites
 
 import androidx.compose.runtime.Composable
 
