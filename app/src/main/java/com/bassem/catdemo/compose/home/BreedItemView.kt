@@ -16,6 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.bassem.catdemo.R
 import com.bassem.catdemo.data.models.BreedItem
+import com.bassem.catdemo.utils.Logger
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 
@@ -31,7 +32,9 @@ fun PreviewBreedItem() {
 
 @Composable
 fun BreedListItem(breedItem: BreedItem, onClick: () -> Unit) {
-    BreedViewItem(name = breedItem.name, imageUrl = breedItem.image?.url, onClick = onClick)
+    val imageUrl = "https://cdn2.thecatapi.com/images/${breedItem.reference_image_id}.jpg"
+    Logger("BreedListItem").d("url $imageUrl")
+    BreedViewItem(name = breedItem.name, imageUrl = imageUrl, onClick = onClick)
 }
 
 @OptIn(ExperimentalGlideComposeApi::class)
