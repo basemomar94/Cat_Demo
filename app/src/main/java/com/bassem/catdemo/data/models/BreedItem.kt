@@ -1,9 +1,13 @@
 package com.bassem.catdemo.data.models
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.serialization.Serializable
-
+@Entity("cats")
 @Serializable
 data class BreedItem(
+    @PrimaryKey(autoGenerate = true)
+    var dbId:Int,
     val description: String = "",
     val id: String = "",
     val name: String = "",
