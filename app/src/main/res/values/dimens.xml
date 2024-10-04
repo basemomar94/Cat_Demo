@@ -6,6 +6,7 @@
     <dimen name="card_corner_radius">12dp</dimen>
     <dimen name="image_height">95dp</dimen>
     <dimen name="default_padding">16dp</dimen>
+    <dimen name="small_padding">4dp</dimen>
 
 
 </resources>

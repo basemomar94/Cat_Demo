@@ -2,4 +2,5 @@
     <string name="app_name">Cat Demo</string>
     <string name="image_of_cat">Image of a cat</string>
     <string name="search_icon">Search Icon</string>
+    <string name="favorite_icon">Favorite icon</string>
 </resources>
