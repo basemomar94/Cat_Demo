@@ -18,10 +18,10 @@ class CatRepoImpl @Inject constructor(private val service: CatService, private v
         emit(Result.Loading)
         logger.i("loading data..")
         var localBreeds = withContext(Dispatchers.IO) { dao.getAllBreeds() }
-        logger.i("local breeds ${localBreeds.map { it.isFavorite }}..")
+        logger.i("Successfully loaded localBreeds ${localBreeds.size} items")
         try {
             val remoteBreeds = service.getCatsBreeds().mapFavorite(localBreeds)
-            logger.i("Successfully loaded ${remoteBreeds.map { it.isFavorite }} items")
+            logger.i("Successfully loaded remoteBreeds ${remoteBreeds.size} items")
             withContext(Dispatchers.IO) {
                 dao.deleteAllBreeds()
                 dao.insertAllBreeds(remoteBreeds)
