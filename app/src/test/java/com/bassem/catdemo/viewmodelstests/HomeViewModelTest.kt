@@ -1,6 +1,6 @@
 package com.bassem.catdemo.viewmodelstests
 
-import androidx.lifecycle.Observer
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.bassem.catdemo.BaseTest
 import com.bassem.catdemo.data.models.Result
 import com.bassem.catdemo.data.repo.CatRepo
@@ -8,36 +8,18 @@ import com.bassem.catdemo.ui.compose.home.HomeViewModel
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.test.runTest
-import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Test
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.asLiveData
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestResult
-import kotlinx.coroutines.test.TestScope
-import kotlinx.coroutines.test.advanceUntilIdle
-import kotlinx.coroutines.test.runBlockingTest
-import kotlinx.coroutines.test.runCurrent
+import kotlinx.coroutines.test.runTest
 import org.junit.Rule
+import org.junit.jupiter.api.Test
 
-@OptIn(ExperimentalCoroutinesApi::class)
 class HomeViewModelTest : BaseTest() {
 
     private lateinit var viewModel: HomeViewModel
-    private val mockRepo: CatRepo = mockk(relaxed = true)
-    private val job = Job()
-    private val testDispatcher = StandardTestDispatcher()
-    private val testScope = TestScope(job + testDispatcher)
+    private val mockRepo: CatRepo = mockk()
 
     @get:Rule
     val instantTaskExecutorRule = InstantTaskExecutorRule()
@@ -100,6 +82,9 @@ class HomeViewModelTest : BaseTest() {
 
 
 }
+
+
+
 
 
 
