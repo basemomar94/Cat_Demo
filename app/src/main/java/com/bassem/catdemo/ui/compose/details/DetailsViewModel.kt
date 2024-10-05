@@ -3,10 +3,7 @@ package com.bassem.catdemo.ui.compose.details
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.toRoute
 import com.bassem.catdemo.data.models.BreedItem
-import com.bassem.catdemo.data.repo.CatRepo
-import com.bassem.catdemo.data.repo.CatRepoImpl
 import com.bassem.catdemo.data.repo.DetailsRep
 import com.bassem.catdemo.utils.Logger
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,7 +18,7 @@ const val BREED_ID = "breedId"
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
-    private val repo: DetailsRep,
+    private val detailsRepo: DetailsRep,
 ) : ViewModel() {
     private val logger = Logger(this::class.java.simpleName)
 
@@ -30,8 +27,12 @@ class DetailsViewModel @Inject constructor(
     val id = savedStateHandle.get<String>(BREED_ID) ?: ""
 
 
-     fun getBreedById() = viewModelScope.launch {
-         _breed.value = repo.getBreedById(id)
+    fun getBreedById() = viewModelScope.launch {
+        _breed.value = detailsRepo.getBreedById(id)
+    }
+
+    fun updateFavoriteStatus(id: String, isFavorite: Boolean) = viewModelScope.launch {
+        detailsRepo.updateFavoriteStatus(id, isFavorite)
     }
 }
 

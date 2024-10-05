@@ -19,6 +19,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,12 +36,14 @@ import com.bassem.catdemo.data.models.BreedItem
 import com.bassem.catdemo.utils.Logger
 import com.bassem.catdemo.utils.getImageUrl
 import dagger.hilt.android.lifecycle.HiltViewModel
+
 @Composable
 fun DetailsScreen(viewModel: DetailsViewModel = hiltViewModel()) {
     val breedItem by viewModel.breed.collectAsState(initial = null)
     LaunchedEffect(key1 = Unit) {
         viewModel.getBreedById()
     }
+    var isFavorite by remember { mutableStateOf(false) }
     when (val item = breedItem) {
         null -> {
             CircularProgressIndicator()
@@ -46,14 +51,18 @@ fun DetailsScreen(viewModel: DetailsViewModel = hiltViewModel()) {
 
         else -> {
             with(item) {
+                var isFavoriteState by remember { mutableStateOf(isFavorite) }
                 DetailsCompose(
                     name = name,
                     imageUrl = reference_image_id.getImageUrl(),
                     description = description,
                     origin = origin,
                     temperament = temperament,
-                    isFavorite = isFavorite,
-                    onFavoriteClick = {}
+                    isFavorite = isFavoriteState,
+                    onFavoriteClick = {
+                        viewModel.updateFavoriteStatus(id, !isFavorite)
+                        isFavoriteState = !isFavoriteState
+                    }
                 )
             }
 
