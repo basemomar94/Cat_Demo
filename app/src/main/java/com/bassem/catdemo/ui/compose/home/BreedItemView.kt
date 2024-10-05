@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
@@ -16,19 +17,16 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.bassem.catdemo.R
-import com.bassem.catdemo.ui.compose.helper.CatImage
 import com.bassem.catdemo.data.models.BreedItem
-import com.bassem.catdemo.utils.Logger
+import com.bassem.catdemo.ui.compose.helper.CatImage
 import com.bassem.catdemo.utils.getImageUrl
-import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
-import com.bumptech.glide.integration.compose.GlideImage
-import com.bumptech.glide.integration.compose.placeholder
 
 @Preview(showBackground = true)
 @Composable
@@ -56,7 +54,6 @@ fun BreedListItem(breedItem: BreedItem, onCardClick: () -> Unit, onFavoriteClick
 
 }
 
-@OptIn(ExperimentalGlideComposeApi::class)
 @Composable
 fun BreedViewItem(
     name: String,
@@ -67,7 +64,13 @@ fun BreedViewItem(
 ) {
     Card(
         onClick = onCardClick,
-        modifier = Modifier.padding(dimensionResource(id = R.dimen.card_side_margin))
+        modifier = Modifier
+            .padding(dimensionResource(id = R.dimen.card_side_margin))
+            .shadow(
+                elevation = dimensionResource(
+                    id = R.dimen.small_padding,
+                ), shape = RoundedCornerShape(8.dp)
+            )
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
             Box(modifier = Modifier.fillMaxWidth()) {
