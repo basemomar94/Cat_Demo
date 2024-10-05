@@ -16,29 +16,28 @@ class CatRepoImpl @Inject constructor(private val service: CatService, private v
 
     override suspend fun getCatsBreeds() = flow {
         emit(Result.Loading)
-        logger.i("loading data..")
+        logger.i("Loading data...")
+
         var localBreeds = withContext(Dispatchers.IO) { dao.getAllBreeds() }
-        logger.i("Successfully loaded localBreeds ${localBreeds.size} items")
+
         try {
             val remoteBreeds = service.getCatsBreeds().mapFavorite(localBreeds)
-            logger.i("Successfully loaded remoteBreeds ${remoteBreeds.size} items")
+            logger.i("Successfully loaded remoteBreeds: ${remoteBreeds.size} items")
+
             withContext(Dispatchers.IO) {
                 dao.deleteAllBreeds()
                 dao.insertAllBreeds(remoteBreeds)
                 localBreeds = dao.getAllBreeds()
             }
-            emit(Result.Success(localBreeds))
-        } catch (e: Exception) {
-            if (localBreeds.isEmpty()) {
-                emit(Result.Fail(e.message ?: "Unknown Error"))
-                logger.e("fail to load ${e.message}")
-            } else {
-                logger.i("emitting local items ${localBreeds.size}")
-                emit(Result.Success(localBreeds))
-            }
 
+            emit(Result.Success(localBreeds))
+
+        } catch (e: Exception) {
+            logger.e("Failed to load data: ${e.message}")
+            emit(if (localBreeds.isEmpty()) Result.Fail("No internet and no local data") else Result.Success(localBreeds))
         }
     }
+
 
     override fun List<BreedItem>.mapFavorite(localBreeds: List<BreedItem>): List<BreedItem> {
         val favoriteIds = localBreeds.filter { it.isFavorite }.map { it.id }.toSet()

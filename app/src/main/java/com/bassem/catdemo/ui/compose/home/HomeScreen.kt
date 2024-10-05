@@ -31,7 +31,7 @@ import com.bassem.catdemo.utils.Logger
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
-    onClick: (Int) -> Unit,
+    onClick: (String) -> Unit,
     navController: NavController
 ) {
     val logger = Logger("HomeScreen")

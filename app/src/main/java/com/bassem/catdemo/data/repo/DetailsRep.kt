@@ -4,6 +4,6 @@ import com.bassem.catdemo.data.models.BreedItem
 
 interface DetailsRep {
 
-    suspend fun getBreedById(id: Int): BreedItem
+    suspend fun getBreedById(id: String): BreedItem
     suspend fun updateFavoriteStatus(breedId: String, isFavorite: Boolean)
 }

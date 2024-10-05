@@ -18,8 +18,8 @@ interface CatsDao {
     @Query("SELECT * FROM cats")
     fun getAllBreeds(): List<BreedItem>
 
-    @Query("SELECT * FROM cats WHERE dbId= :databaseId")
-    fun getBreedById(databaseId: Int): BreedItem
+    @Query("SELECT * FROM cats WHERE id= :breedId")
+    fun getBreedById(breedId: String): BreedItem
 
     @Query("UPDATE cats SET isFavorite=:isFavorite WHERE id=:breedId")
     fun updateFavoriteStatus(breedId: String, isFavorite: Boolean)

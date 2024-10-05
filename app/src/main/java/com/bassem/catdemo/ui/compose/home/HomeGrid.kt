@@ -15,7 +15,7 @@ import com.bassem.catdemo.data.models.BreedItem
 @Composable
 fun HomeGrid(
     breeds: List<BreedItem>,
-    onClick: (Int) -> Unit,
+    onClick: (String) -> Unit,
     onFavoriteClick: (BreedItem) -> Unit
 ) {
     LazyVerticalGrid(
@@ -27,7 +27,7 @@ fun HomeGrid(
         items(breeds, key = { it.id }) { item ->
             BreedListItem(
                 item,
-                onCardClick = { onClick(item.dbId) },
+                onCardClick = { onClick(item.id) },
                 onFavoriteClick = { onFavoriteClick(item) }
             )
         }

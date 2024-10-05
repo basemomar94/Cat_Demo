@@ -25,6 +25,7 @@ android {
         }
     }
 
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -52,6 +53,15 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
+    testOptions {
+        packaging {
+            resources.excludes.add("META-INF/*")
+        }
+    }
+
 }
 
 dependencies {
@@ -98,6 +108,9 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.intents)
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.hilt.android.testing)
-    androidTestImplementation(libs.kotlinx.coroutines.test)
-    testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    androidTestImplementation(libs.mockk.android)
+    implementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.junit.jupiter.params)
+    testImplementation ("androidx.arch.core:core-testing:2.1.0")
 }
