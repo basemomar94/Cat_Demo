@@ -1,6 +1,7 @@
 package com.bassem.catdemo.ui.compose
 
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -10,6 +11,7 @@ import com.bassem.catdemo.ui.compose.details.DetailsScreen
 import com.bassem.catdemo.ui.compose.favorites.FavoritesScreen
 import com.bassem.catdemo.ui.compose.home.HomeScreen
 import com.bassem.catdemo.data.models.BreedItem
+import com.bassem.catdemo.ui.compose.details.DetailsViewModel
 
 @Composable
 fun CatsApp() {
@@ -20,21 +22,15 @@ fun CatsApp() {
 
 @Composable
 fun CatsNavHost(navHostController: NavHostController) {
-    NavHost(navController = navHostController, startDestination = Screens.Home) {
-        composable<Screens.Home> {
-            HomeScreen(onClick = { breedId ->
-                navHostController.navigate(route = Screens.Details(breedId))
+    NavHost(navController = navHostController, startDestination = Screen.Home.route) {
+        composable(route = Screen.Home.route) {
+            HomeScreen(onClick = {
+                navHostController.navigate(Screen.Details.createRoute(it))
             })
         }
-        composable<Screens.Details> { backStackEntry ->
-            val item: BreedItem = backStackEntry.toRoute()
-            DetailsScreen(item)
-        }
-
-        composable<Screens.Favorites> {
-            FavoritesScreen()
+        composable(route = Screen.Details.route, arguments = Screen.Details.navArguments) {
+            DetailsScreen( )
         }
 
     }
-
 }

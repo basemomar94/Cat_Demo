@@ -11,10 +11,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,72 +26,38 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.bassem.catdemo.R
 import com.bassem.catdemo.ui.compose.helper.CatImage
 import com.bassem.catdemo.data.models.BreedItem
-
-@Preview(showBackground = true)
+import com.bassem.catdemo.utils.Logger
+import com.bassem.catdemo.utils.getImageUrl
+import dagger.hilt.android.lifecycle.HiltViewModel
 @Composable
-fun DetailsScreenPreview() {
-    DetailsCompose(
-        name = "Egyptian Cat",
-        imageUrl = "",
-        description = "test description",
-        isFavorite = false
-    ) {
-
+fun DetailsScreen(viewModel: DetailsViewModel = hiltViewModel()) {
+    val breedItem by viewModel.breed.collectAsState(initial = null)
+    LaunchedEffect(key1 = Unit) {
+        viewModel.getBreedById()
     }
-}
+    when (val item = breedItem) {
+        null -> {
+            CircularProgressIndicator()
+        }
 
-@Composable
-fun DetailsScreen(breedItem: BreedItem) {
-    DetailsCompose(
-        name = breedItem.name,
-        imageUrl = breedItem.reference_image_id,
-        description = breedItem.description,
-        isFavorite = false
-    ) {
-
-    }
-}
-
-
-@Composable
-fun DetailsCompose(
-    name: String,
-    imageUrl: String,
-    description: String,
-    isFavorite: Boolean,
-    onFavoriteClick: () -> Unit
-) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(dimensionResource(id = R.dimen.default_padding))
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            Text(
-                text = name,
-                style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.padding(dimensionResource(id = R.dimen.default_padding))
-            )
-            Icon(
-                modifier = Modifier
-                    .align(Alignment.CenterVertically)
-                    .clickable { onFavoriteClick() },
-                imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
-                contentDescription = stringResource(id = R.string.favorite_icon)
-            )
+        else -> {
+            with(item) {
+                DetailsCompose(
+                    name = name,
+                    imageUrl = reference_image_id.getImageUrl(),
+                    description = description,
+                    origin = origin,
+                    temperament = temperament,
+                    isFavorite = isFavorite,
+                    onFavoriteClick = {}
+                )
+            }
 
         }
-        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.default_padding)))
-        CatImage(imageUrl = imageUrl)
-        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.default_padding)))
-        Text(text = description, style = MaterialTheme.typography.bodyLarge)
-
     }
 
 }

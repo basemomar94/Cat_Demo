@@ -1,0 +1,10 @@
+package com.bassem.catdemo.data.repo
+
+import com.bassem.catdemo.data.local.CatsDao
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import javax.inject.Inject
+
+class DetailsRepoImp @Inject constructor(private val dao: CatsDao) : DetailsRep {
+    override suspend fun getBreedById(id: String)= withContext(Dispatchers.IO){dao.getCatById(id)}
+}

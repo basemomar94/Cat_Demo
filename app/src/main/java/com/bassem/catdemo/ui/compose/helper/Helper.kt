@@ -14,15 +14,11 @@ import com.bumptech.glide.integration.compose.placeholder
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun CatImage(imageUrl: String?) {
+fun CatImage(imageUrl: String?, modifier: Modifier) {
     GlideImage(
         model = imageUrl,
         contentDescription = stringResource(id = R.string.image_of_cat),
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(
-                dimensionResource(id = R.dimen.image_height)
-            ),
+        modifier =modifier,
         contentScale = ContentScale.Crop,
         loading = placeholder(R.drawable.loading),
         failure = placeholder(R.drawable.error)

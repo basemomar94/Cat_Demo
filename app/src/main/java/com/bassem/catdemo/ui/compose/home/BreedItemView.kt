@@ -25,6 +25,7 @@ import com.bassem.catdemo.R
 import com.bassem.catdemo.ui.compose.helper.CatImage
 import com.bassem.catdemo.data.models.BreedItem
 import com.bassem.catdemo.utils.Logger
+import com.bassem.catdemo.utils.getImageUrl
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.bumptech.glide.integration.compose.placeholder
@@ -43,15 +44,16 @@ fun PreviewBreedItem() {
 
 @Composable
 fun BreedListItem(breedItem: BreedItem, onCardClick: () -> Unit, onFavoriteClick: () -> Unit) {
-    val imageUrl = "https://cdn2.thecatapi.com/images/${breedItem.reference_image_id}.jpg"
-    Logger("BreedListItem").d("url $imageUrl")
-    BreedViewItem(
-        name = breedItem.name,
-        imageUrl = imageUrl,
-        isFavorite = breedItem.isFavorite,
-        onCardClick = onCardClick,
-        onFavoriteClick = onFavoriteClick
-    )
+    with(breedItem) {
+        BreedViewItem(
+            name = name,
+            imageUrl = reference_image_id.getImageUrl(),
+            isFavorite = isFavorite,
+            onCardClick = onCardClick,
+            onFavoriteClick = onFavoriteClick
+        )
+    }
+
 }
 
 @OptIn(ExperimentalGlideComposeApi::class)
@@ -69,7 +71,13 @@ fun BreedViewItem(
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
             Box(modifier = Modifier.fillMaxWidth()) {
-                CatImage(imageUrl =imageUrl)
+                CatImage(
+                    imageUrl = imageUrl, modifier = Modifier
+                        .fillMaxWidth()
+                        .height(
+                            dimensionResource(id = R.dimen.image_height)
+                        )
+                )
                 Icon(
                     modifier = Modifier
                         .padding(dimensionResource(id = R.dimen.small_padding))
