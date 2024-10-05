@@ -71,7 +71,7 @@ fun HomeScreen(
                 .padding(paddingValues)
         ) {
 
-            SearchBar(query = query, onQueryChange = { new -> query = new })
+            HomeSearchBar(query = query, onQueryChange = { new -> query = new })
 
             when (breedsResult) {
                 is Result.Loading -> LoadingIndicator()
