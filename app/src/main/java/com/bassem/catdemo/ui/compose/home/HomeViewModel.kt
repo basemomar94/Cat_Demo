@@ -21,7 +21,7 @@ class HomeViewModel @Inject constructor(private val repo: CatRepo) : ViewModel()
         fetchBreedsList()
     }
 
-    private fun fetchBreedsList() = viewModelScope.launch {
+     fun fetchBreedsList() = viewModelScope.launch {
         repo.getCatsBreeds().collect { result ->
             _breedsList.value = result
 
