@@ -9,6 +9,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.bassem.catdemo.ui.compose.shared.LoadingIndicator
 import com.bassem.catdemo.utils.Logger
 import com.bassem.catdemo.utils.getImageUrl
 
@@ -21,7 +22,7 @@ fun DetailsScreen(viewModel: DetailsViewModel = hiltViewModel()) {
     }
     when (val item = breedItem) {
         null -> {
-            CircularProgressIndicator()
+            LoadingIndicator()
         }
 
         else -> {

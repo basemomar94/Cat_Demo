@@ -29,7 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bassem.catdemo.R
-import com.bassem.catdemo.ui.compose.helper.CatImage
+import com.bassem.catdemo.ui.compose.shared.BreedImage
 
 @Preview(showBackground = true)
 @Composable
@@ -82,7 +82,7 @@ fun DetailsCompose(
 
         }
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.default_padding)))
-        CatImage(
+        BreedImage(
             imageUrl = imageUrl, modifier = Modifier
                 .clip(RoundedCornerShape(dimensionResource(id = R.dimen.default_padding))) // Rounded corners
                 .shadow(elevation = 4.dp)

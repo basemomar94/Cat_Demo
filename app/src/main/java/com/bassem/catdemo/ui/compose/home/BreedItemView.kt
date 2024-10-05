@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bassem.catdemo.R
 import com.bassem.catdemo.data.models.BreedItem
-import com.bassem.catdemo.ui.compose.helper.CatImage
+import com.bassem.catdemo.ui.compose.shared.BreedImage
 import com.bassem.catdemo.utils.Logger
 import com.bassem.catdemo.utils.getImageUrl
 
@@ -76,7 +76,7 @@ fun BreedViewItem(
     ) {
         Column(modifier = Modifier.fillMaxWidth()) {
             Box(modifier = Modifier.fillMaxWidth()) {
-                CatImage(
+                BreedImage(
                     imageUrl = imageUrl, modifier = Modifier
                         .fillMaxWidth()
                         .height(

@@ -1,11 +1,8 @@
-package com.bassem.catdemo.ui.compose.helper
+package com.bassem.catdemo.ui.compose.shared
 
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import com.bassem.catdemo.R
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
@@ -14,7 +11,7 @@ import com.bumptech.glide.integration.compose.placeholder
 
 @OptIn(ExperimentalGlideComposeApi::class)
 @Composable
-fun CatImage(imageUrl: String?, modifier: Modifier) {
+fun BreedImage(imageUrl: String?, modifier: Modifier) {
     GlideImage(
         model = imageUrl,
         contentDescription = stringResource(id = R.string.image_of_cat),
