@@ -12,11 +12,14 @@ interface CatsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllBreeds(catsList: List<BreedItem>)
 
+    @Query("DELETE FROM cats")
+    fun deleteAllBreeds()
+
     @Query("SELECT * FROM cats")
     fun getAllBreeds(): List<BreedItem>
 
-    @Query("SELECT * FROM cats WHERE id=:breedId")
-    fun getBreedById(breedId: String): BreedItem
+    @Query("SELECT * FROM cats WHERE dbId= :databaseId")
+    fun getBreedById(databaseId: Int): BreedItem
 
     @Query("UPDATE cats SET isFavorite=:isFavorite WHERE id=:breedId")
     fun updateFavoriteStatus(breedId: String, isFavorite: Boolean)

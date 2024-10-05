@@ -17,12 +17,17 @@ class CatRepoImpl @Inject constructor(private val service: CatService, private v
     override suspend fun getCatsBreeds() = flow {
         emit(Result.Loading)
         logger.i("loading data..")
-        val localBreeds = withContext(Dispatchers.IO) { dao.getAllBreeds() }
+        var localBreeds = withContext(Dispatchers.IO) { dao.getAllBreeds() }
+        logger.i("local breeds ${localBreeds.map { it.isFavorite }}..")
         try {
-            val remoteBreeds = service.getCatsBreeds()
-            logger.i("Successfully loaded ${remoteBreeds.size} items")
-            withContext(Dispatchers.IO) { dao.insertAllBreeds(remoteBreeds) }
-            emit(Result.Success(remoteBreeds))
+            val remoteBreeds = service.getCatsBreeds().mapFavorite(localBreeds)
+            logger.i("Successfully loaded ${remoteBreeds.map { it.isFavorite }} items")
+            withContext(Dispatchers.IO) {
+                dao.deleteAllBreeds()
+                dao.insertAllBreeds(remoteBreeds)
+                localBreeds = dao.getAllBreeds()
+            }
+            emit(Result.Success(localBreeds))
         } catch (e: Exception) {
             if (localBreeds.isEmpty()) {
                 emit(Result.Fail(e.message ?: "Unknown Error"))
@@ -36,13 +41,15 @@ class CatRepoImpl @Inject constructor(private val service: CatService, private v
     }
 
     override fun List<BreedItem>.mapFavorite(localBreeds: List<BreedItem>): List<BreedItem> {
-        val favoriteIds =
-            localBreeds.map { it.id }.toSet()
-
+        val favoriteIds = localBreeds.filter { it.isFavorite }.map { it.id }.toSet()
+        logger.d("Favorite IDs: $favoriteIds")
         return this.map { breedItem ->
-            breedItem.copy(isFavorite = favoriteIds.contains(breedItem.id))
+            val isFavorite = favoriteIds.contains(breedItem.id)
+            logger.d("Mapping breed ID: ${breedItem.id}, isFavorite: $isFavorite")
+            breedItem.copy(isFavorite = isFavorite)
         }
     }
+
 
     override suspend fun updateFavoriteStatus(breedId: String, isFavorite: Boolean) {
         withContext(Dispatchers.IO) { dao.updateFavoriteStatus(breedId, isFavorite) }

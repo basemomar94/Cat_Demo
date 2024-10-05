@@ -34,10 +34,12 @@ import com.bassem.catdemo.R
 import com.bassem.catdemo.data.models.BreedItem
 import com.bassem.catdemo.data.models.Result
 import com.bassem.catdemo.data.models.tabs
+import com.bassem.catdemo.utils.Logger
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), onClick: (String) -> Unit) {
+fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), onClick: (Int) -> Unit) {
+    val logger = Logger("HomeScreen")
     val breedsResult by viewModel.breedsList.collectAsState(initial = Result.Loading)
     val filteredBreeds = remember { mutableStateListOf<BreedItem>() }
     var selectedTab by remember { mutableIntStateOf(0) }
@@ -90,7 +92,11 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), onClick: (String) -> 
                                 items(filteredBreeds, key = { it.id }) { item: BreedItem ->
                                     BreedListItem(
                                         item,
-                                        onCardClick = { onClick(item.id) },
+                                        onCardClick = {
+                                            onClick(item.dbId)
+                                            logger.d("clicked item is $item")
+
+                                        },
                                         onFavoriteClick = {
                                             viewModel.updateFavoriteStatus(
                                                 item.id,

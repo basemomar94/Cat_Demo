@@ -64,7 +64,6 @@ fun BreedViewItem(
     onFavoriteClick: () -> Unit
 ) {
     val log = Logger("BreedViewItem")
-    log.d("favorite is $isFavorite")
     Card(
         onClick = onCardClick,
         modifier = Modifier

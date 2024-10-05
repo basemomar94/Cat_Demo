@@ -24,7 +24,7 @@ class DetailsViewModel @Inject constructor(
 
     private var _breed = MutableStateFlow<BreedItem?>(null)
     val breed: Flow<BreedItem> get() = _breed.filterNotNull()
-    val id = savedStateHandle.get<String>(BREED_ID) ?: ""
+    val id = savedStateHandle.get<Int>(BREED_ID) ?: -1
 
 
     fun getBreedById() = viewModelScope.launch {

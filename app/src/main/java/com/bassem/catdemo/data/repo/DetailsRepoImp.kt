@@ -1,13 +1,14 @@
 package com.bassem.catdemo.data.repo
 
 import com.bassem.catdemo.data.local.CatsDao
+import com.bassem.catdemo.data.models.BreedItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class DetailsRepoImp @Inject constructor(private val dao: CatsDao) : DetailsRep {
 
-    override suspend fun getBreedById(id: String) =
+    override suspend fun getBreedById(id: Int): BreedItem =
         withContext(Dispatchers.IO) { dao.getBreedById(id) }
 
     override suspend fun updateFavoriteStatus(breedId: String, isFavorite: Boolean) {

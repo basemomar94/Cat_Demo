@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 @Entity("cats")
 data class BreedItem(
     @PrimaryKey(autoGenerate = true)
-    var dbId:Int=0,
+    var dbId:Int,
     val description: String = "",
     val id: String = "",
     val name: String = "",

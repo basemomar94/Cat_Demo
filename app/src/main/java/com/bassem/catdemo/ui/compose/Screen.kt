@@ -13,10 +13,10 @@ sealed class Screen(
     data object Details : Screen(
         route = "details/{breedId}",
         navArguments = listOf(navArgument("breedId") {
-            type = NavType.StringType
+            type = NavType.IntType
         })
     ) {
-        fun createRoute(breedId: String) = "details/${breedId}"
+        fun createRoute(breedId: Int) = "details/${breedId}"
     }
 
 }
