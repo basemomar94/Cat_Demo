@@ -76,15 +76,20 @@ fun HomeScreen(
             when (breedsResult) {
                 is Result.Loading -> LoadingIndicator()
                 is Result.Success -> {
+                    val displayedBreeds =
+                        if (selectedTab == 1) filteredBreeds.filter { it.isFavorite } else filteredBreeds
                     HomeGrid(
-                        breeds = filteredBreeds,
-                        selectedTab = selectedTab,
+                        breeds = displayedBreeds,
                         onClick = onClick,
                         onFavoriteClick = { item ->
                             viewModel.updateFavoriteStatus(item.id, !item.isFavorite)
-                            val index = filteredBreeds.indexOf(item)
+                            val updatedItem = item.copy(isFavorite = !item.isFavorite)
+                            val index = displayedBreeds.indexOf(item)
                             if (index >= 0) {
                                 filteredBreeds[index] = item.copy(isFavorite = !item.isFavorite)
+                            }
+                            if (selectedTab == 1 && !updatedItem.isFavorite) {
+                                filteredBreeds.remove(item)
                             }
                         })
                 }

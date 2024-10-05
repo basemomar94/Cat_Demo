@@ -1,6 +1,5 @@
 package com.bassem.catdemo.ui.compose.details
 
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
