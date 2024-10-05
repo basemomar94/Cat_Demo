@@ -43,4 +43,8 @@ class CatRepoImpl @Inject constructor(private val service: CatService, private v
             breedItem.copy(isFavorite = favoriteIds.contains(breedItem.id))
         }
     }
+
+    override suspend fun updateFavoriteStatus(breedId: String, isFavorite: Boolean) {
+        withContext(Dispatchers.IO) { dao.updateFavoriteStatus(breedId, isFavorite) }
+    }
 }

@@ -83,11 +83,22 @@ fun HomeScreen(viewModel: HomeViewModel = hiltViewModel(), onClick: (String) -> 
                                     .fillMaxSize()
                                     .padding(dimensionResource(id = R.dimen.default_padding))
                             ) {
-                                items(filteredBreeds) { item: BreedItem ->
+                                items(filteredBreeds, key = { it.id }) { item: BreedItem ->
                                     BreedListItem(
                                         item,
                                         onCardClick = { onClick(item.id) },
-                                        onFavoriteClick = {})
+                                        onFavoriteClick = {
+                                            viewModel.updateFavoriteStatus(
+                                                item.id,
+                                                !item.isFavorite
+                                            )
+                                            val index = filteredBreeds.indexOf(item)
+                                            val updatedItem =
+                                                item.copy(isFavorite = !item.isFavorite)
+                                            if (index >= 0) {
+                                                filteredBreeds[index] = updatedItem
+                                            }
+                                        })
 
                                 }
                             }

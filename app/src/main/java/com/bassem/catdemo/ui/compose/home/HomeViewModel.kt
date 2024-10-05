@@ -28,4 +28,8 @@ class HomeViewModel @Inject constructor(private val repo: CatRepo) : ViewModel()
         }
     }
 
+    fun updateFavoriteStatus(id: String, isFavorite: Boolean) = viewModelScope.launch {
+        repo.updateFavoriteStatus(id, isFavorite)
+    }
+
 }

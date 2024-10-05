@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.bassem.catdemo.R
 import com.bassem.catdemo.data.models.BreedItem
 import com.bassem.catdemo.ui.compose.helper.CatImage
+import com.bassem.catdemo.utils.Logger
 import com.bassem.catdemo.utils.getImageUrl
 
 @Preview(showBackground = true)
@@ -62,6 +63,8 @@ fun BreedViewItem(
     onCardClick: () -> Unit,
     onFavoriteClick: () -> Unit
 ) {
+    val log = Logger("BreedViewItem")
+    log.d("favorite is $isFavorite")
     Card(
         onClick = onCardClick,
         modifier = Modifier
