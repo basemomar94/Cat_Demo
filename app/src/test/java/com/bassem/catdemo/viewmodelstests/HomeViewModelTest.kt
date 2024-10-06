@@ -1,6 +1,5 @@
 package com.bassem.catdemo.viewmodelstests
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.bassem.catdemo.BaseTest
 import com.bassem.catdemo.data.models.Result
 import com.bassem.catdemo.data.repo.CatRepo
@@ -10,9 +9,7 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.test.TestResult
 import kotlinx.coroutines.test.runTest
-import org.junit.Rule
 import org.junit.jupiter.api.Test
 
 class HomeViewModelTest : BaseTest() {
