@@ -7,11 +7,14 @@ import com.bassem.catdemo.ui.compose.home.HomeViewModel
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class HomeViewModelTest : BaseTest() {
 
     private lateinit var viewModel: HomeViewModel
@@ -55,6 +58,18 @@ class HomeViewModelTest : BaseTest() {
         val emittedResult = viewModel.breedsList.first()
 
         assert(emittedResult == mockResult)
+    }
+
+    @Test
+    fun test_update_favorite_status() = runTest {
+        val breedId = "1"
+        val isFavorite = true
+        coEvery { mockRepo.updateFavoriteStatus(breedId, isFavorite) } returns Unit
+
+        viewModel.updateFavoriteStatus(breedId, isFavorite)
+        advanceUntilIdle()
+
+        coVerify { mockRepo.updateFavoriteStatus(breedId, isFavorite) }
     }
 
 
