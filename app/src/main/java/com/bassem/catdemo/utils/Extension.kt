@@ -3,13 +3,13 @@ package com.bassem.catdemo.utils
 import com.bassem.catdemo.data.models.BreedItem
 
 
-fun String.getImageUrl() = "https://cdn2.thecatapi.com/images/$this.jpg"
+fun String?.getImageUrl() = "https://cdn2.thecatapi.com/images/$this.jpg"
 
-fun List<BreedItem>.getAverageSpan(): Double {
-    val firstNumbers = this.mapNotNull { lifespan ->
+fun List<BreedItem>?.getAverageSpan(): Double {
+    val firstNumbers = this?.mapNotNull { lifespan ->
         lifespan.life_span.split(" - ").firstOrNull()?.trim()?.toIntOrNull()
     }
 
-    return if (firstNumbers.isNotEmpty()) firstNumbers.average() else 0.0
+    return if (firstNumbers?.isNotEmpty() == true) firstNumbers.average() ?: 0.0 else 0.0
 }
 
