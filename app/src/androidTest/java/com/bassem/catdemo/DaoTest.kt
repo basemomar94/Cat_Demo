@@ -57,7 +57,7 @@ class DaoTest {
     }
 
     @Test
-    fun test_update_favorite_status_true()= runTest {
+    fun test_update_favorite_status_true() = runTest {
         appDao.updateFavoriteStatus("23", true)
         val actual = appDao.getBreedById("23").isFavorite
         Assert.assertTrue(actual)
@@ -65,11 +65,17 @@ class DaoTest {
     }
 
     @Test
-    fun test_update_favorite_status_false()= runTest {
+    fun test_update_favorite_status_false() = runTest {
         appDao.updateFavoriteStatus("26", false)
         val actual = appDao.getBreedById("26").isFavorite
         Assert.assertFalse(actual)
 
+    }
+
+    @Test
+    fun test_get_favorites_breeds() = runTest {
+        val actual = appDao.getAllFavorites().size
+        Assert.assertEquals(1, actual)
     }
 
 }
