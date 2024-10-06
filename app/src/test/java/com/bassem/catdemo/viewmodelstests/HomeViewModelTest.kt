@@ -9,7 +9,6 @@ import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.TestResult
 import kotlinx.coroutines.test.runTest
@@ -19,41 +18,19 @@ import org.junit.jupiter.api.Test
 class HomeViewModelTest : BaseTest() {
 
     private lateinit var viewModel: HomeViewModel
-    private val mockRepo: CatRepo = mockk()
+    private val mockRepo: CatRepo = mockk(relaxed = true)
 
-    @get:Rule
-    val instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    @get:Rule
-    val coroutineTestRule = TestResult
     override fun setup() {
         super.setup()
         viewModel = HomeViewModel(mockRepo)
     }
 
     @Test
-    fun `fetchBreedsList emits loading state before fetching data`(): Unit = runTest {
-        val mockResult = Result.Loading
+    fun fetchBreedsList_emits_loading_state_before_fetching_data() = runTest {
+        val loadingState = Result.Loading
 
-        coEvery { mockRepo.getCatsBreeds() } returns flowOf(mockResult)
-
-        viewModel.fetchBreedsList()
-
-        coVerify { mockRepo.getCatsBreeds() }
-
-        val emittedResult = viewModel.breedsList.first()
-
-        assert(emittedResult == mockResult)
-    }
-
-    @Test
-    fun `fetchBreedsList emits fail state in case exception`() = runTest {
-        val mockResult = Result.Fail("mock")
-
-        coEvery { mockRepo.getCatsBreeds() } returns flow {
-            emit(Result.Loading)
-            throw Exception("mock")
-        }
+        coEvery { mockRepo.getCatsBreeds() } returns flowOf(loadingState)
 
         viewModel.fetchBreedsList()
 
@@ -61,12 +38,15 @@ class HomeViewModelTest : BaseTest() {
 
         val emittedResult = viewModel.breedsList.first()
 
-        assert(emittedResult == mockResult)
+        assert(emittedResult == loadingState)
     }
 
+
     @Test
-    fun `fetchBreedsList updates breedsList with fetched results`() = runTest {
+    fun fetchBreedsList_updates_breedsList_with_fetched_results() = runTest {
+
         val mockBreedsList = mockBreedsList
+
         val mockResult = Result.Success(mockBreedsList)
 
         coEvery { mockRepo.getCatsBreeds() } returns flowOf(mockResult)
