@@ -24,8 +24,28 @@ open class BaseTest {
 
     val mockBreedsList =
         listOf(
-            BreedItem(1, "test", "23", "Sphinx", "Egypt", "loyal", "fad", false),
-            BreedItem(1, "new description", "26", "Aug", "Portugal", "smart", "fad", true)
+            BreedItem(
+                dbId = 1,
+                description = "test",
+                id = "23",
+                name = "Sphinx",
+                origin = "Egypt",
+                temperament = "loyal",
+                reference_image_id = "fad",
+                isFavorite = false,
+                life_span = "4 - 5"
+            ),
+            BreedItem(
+                dbId = 1,
+                description = "new description",
+                id = "26",
+                name = "Aug",
+                origin = "Portugal",
+                temperament = "smart",
+                reference_image_id = "fad",
+                isFavorite = true,
+                life_span = "10 - 4"
+            )
         )
 
     @BeforeEach
