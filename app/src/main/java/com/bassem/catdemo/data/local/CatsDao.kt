@@ -23,4 +23,7 @@ interface CatsDao {
 
     @Query("UPDATE cats SET isFavorite=:isFavorite WHERE id=:breedId")
     fun updateFavoriteStatus(breedId: String, isFavorite: Boolean)
+
+    @Query("SELECT * FROM cats WHERE isFavorite =1")
+    fun getAllFavorites(): List<BreedItem>
 }

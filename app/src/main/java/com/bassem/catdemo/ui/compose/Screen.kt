@@ -9,7 +9,7 @@ sealed class Screen(
     val navArguments: List<NamedNavArgument> = emptyList()
 ) {
     data object Home : Screen("home")
-
+    data object Favorites: Screen("Favorites")
     data object Details : Screen(
         route = "details/{breedId}",
         navArguments = listOf(navArgument("breedId") {

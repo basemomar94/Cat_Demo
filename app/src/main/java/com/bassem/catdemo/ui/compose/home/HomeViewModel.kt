@@ -14,8 +14,8 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(private val repo: CatRepo) : ViewModel() {
 
-    private var _breedsList = MutableStateFlow<Result?>(null)
-    val breedsList: Flow<Result> get() = _breedsList.filterNotNull()
+    private var _breedsList = MutableStateFlow<Result<Any?>?>(null)
+    val breedsList: Flow<Result<Any?>> get() = _breedsList.filterNotNull()
 
     init {
         fetchBreedsList()

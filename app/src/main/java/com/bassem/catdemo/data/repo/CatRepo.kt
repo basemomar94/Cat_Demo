@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface CatRepo {
 
-    suspend fun getCatsBreeds(): Flow<Result>
+    suspend fun getCatsBreeds(): Flow<Result<Any?>>
 
     fun List<BreedItem>.mapFavorite(localBreeds: List<BreedItem>): List<BreedItem>
 

@@ -112,5 +112,7 @@ dependencies {
     androidTestImplementation(libs.mockk.android)
     implementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.junit.jupiter.params)
-    testImplementation ("androidx.arch.core:core-testing:2.1.0")
+    testImplementation (libs.androidx.core.testing.v210)
+    implementation (libs.androidx.paging.runtime)
+    implementation (libs.androidx.paging.compose)
 }

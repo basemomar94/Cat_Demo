@@ -4,6 +4,8 @@ import com.bassem.catdemo.data.repo.CatRepo
 import com.bassem.catdemo.data.repo.CatRepoImpl
 import com.bassem.catdemo.data.repo.DetailsRep
 import com.bassem.catdemo.data.repo.DetailsRepoImp
+import com.bassem.catdemo.data.repo.FavoriteRepo
+import com.bassem.catdemo.data.repo.FavoriteRepoImp
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -17,4 +19,7 @@ abstract class RepoModule {
 
     @Binds
     abstract fun provideDetailsRepo(impl: DetailsRepoImp): DetailsRep
+
+    @Binds
+    abstract fun provideFavoriteRepo(impl: FavoriteRepoImp): FavoriteRepo
 }
