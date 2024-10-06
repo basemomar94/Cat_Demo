@@ -10,6 +10,6 @@ fun List<BreedItem>?.getAverageSpan(): Double {
         lifespan.life_span.split(" - ").firstOrNull()?.trim()?.toIntOrNull()
     }
 
-    return if (firstNumbers?.isNotEmpty() == true) firstNumbers.average() ?: 0.0 else 0.0
+    return if (firstNumbers?.isNotEmpty() == true) firstNumbers.average() else 0.0
 }
 
