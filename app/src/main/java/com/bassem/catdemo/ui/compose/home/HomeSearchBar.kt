@@ -35,7 +35,7 @@ fun HomeSearchBar(query: String, onQueryChange: (String) -> Unit) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(
-                dimensionResource(id = R.dimen.default_padding),
+                horizontal = dimensionResource(id = R.dimen.default_padding),
             )
             .background(
                 color = MaterialTheme.colorScheme.surface, shape = RoundedCornerShape(

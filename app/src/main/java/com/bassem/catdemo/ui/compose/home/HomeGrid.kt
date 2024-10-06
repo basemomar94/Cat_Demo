@@ -22,7 +22,7 @@ fun HomeGrid(
         columns = GridCells.Fixed(3),
         modifier = Modifier
             .fillMaxSize()
-            .padding(dimensionResource(id = R.dimen.default_padding))
+            .padding(horizontal = dimensionResource(id = R.dimen.default_padding))
     ) {
         items(breeds, key = { it.id }) { item ->
             BreedListItem(
@@ -33,4 +33,4 @@ fun HomeGrid(
         }
     }
 
-    }
+}
