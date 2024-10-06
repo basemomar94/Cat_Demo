@@ -14,4 +14,12 @@ class ExtensionTest : BaseTest() {
         val expected = "https://cdn2.thecatapi.com/images/test.jpg"
         Assertions.assertEquals(expected, actual)
     }
+
+    @Test
+    fun test_average_life_span() = runTest {
+        val actual = mockBreedsList.getAverageSpan()
+        val expected = 7.0
+        Assertions.assertEquals(expected, actual)
+
+    }
 }
