@@ -1,5 +1,6 @@
 package com.bassem.catdemo.data.repo
 
+import androidx.annotation.VisibleForTesting
 import com.bassem.catdemo.data.local.CatsDao
 import com.bassem.catdemo.data.models.BreedItem
 import com.bassem.catdemo.data.models.Result
@@ -36,33 +37,26 @@ class CatRepoImpl @Inject constructor(private val service: CatService, private v
 
             emit(Result.Success(localBreeds))
 
-        } catch (e: IOException) {
-            logger.e("network error ${e.message}")
-            emit(
-                if (localBreeds.isEmpty()) Result.Fail(
-                     "Unfortunately, no connection. no cached data"
-                ) else Result.Success(localBreeds)
-            )
-        } catch (e: SQLException) {
-            logger.e("Database error occurred. Please try again later. ${e.message}")
-            emit(Result.Fail(""))
-        } catch (e: JsonParseException) {
-            logger.e("Parsing error: ${e.message}")
-            emit(
-                if (localBreeds.isEmpty()) Result.Fail(
-                    "Data parsing error. Could not parse remote data."
-                ) else Result.Success(localBreeds)
-            )
+
         } catch (e: Exception) {
             logger.e("Unexpected error: ${e.message}")
-            emit(
-                if (localBreeds.isEmpty()) Result.Fail(
-                    "An unexpected error occurred."
-                ) else Result.Success(localBreeds)
-            )
+            if (localBreeds.isEmpty()) {
+                emit(Result.Fail(getExceptionMessage(e)))
+            } else {
+                emit(Result.Success(localBreeds))
+            }
+
 
         }
     }.retry(3)
+
+    @VisibleForTesting
+    fun getExceptionMessage(e: Exception) = when (e) {
+        is IOException -> "Connection Error"
+        is SQLException -> "Local Parsing Error"
+        is JsonParseException -> "Remote Parsing Error"
+        else -> "Unexpected Error"
+    }
 
 
     override fun List<BreedItem>.mapFavorite(localBreeds: List<BreedItem>): List<BreedItem> {
