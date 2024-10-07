@@ -7,7 +7,7 @@ import org.junit.Before
 import org.junit.Test
 
 class BreedItemViewTest : BaseComposeTest() {
-    var isFavoriteClicked = false
+    private var isFavoriteClicked = false
 
     @Before
     fun setUp() {

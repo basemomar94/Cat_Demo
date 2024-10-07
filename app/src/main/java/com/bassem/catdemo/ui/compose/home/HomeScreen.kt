@@ -25,6 +25,7 @@ import com.bassem.catdemo.data.models.Result
 import com.bassem.catdemo.ui.compose.Screen
 import com.bassem.catdemo.ui.compose.shared.ErrorMessage
 import com.bassem.catdemo.ui.compose.shared.LoadingIndicator
+import com.bassem.catdemo.ui.compose.shared.SearchBar
 import com.bassem.catdemo.utils.Logger
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -76,7 +77,7 @@ fun HomeScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            HomeSearchBar(query = query, onQueryChange = { new -> query = new })
+            SearchBar(query = query, onQueryChange = { new -> query = new })
 
             logger.i("breedResult is $breedsResult")
 

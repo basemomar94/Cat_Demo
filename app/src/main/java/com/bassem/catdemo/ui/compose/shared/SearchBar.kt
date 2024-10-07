@@ -1,4 +1,4 @@
-package com.bassem.catdemo.ui.compose.home
+package com.bassem.catdemo.ui.compose.shared
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,11 +24,11 @@ import com.bassem.catdemo.R
 @Preview(showBackground = true)
 @Composable
 fun SearchBarPreview() {
-    HomeSearchBar("", {})
+    SearchBar("", {})
 }
 
 @Composable
-fun HomeSearchBar(query: String, onQueryChange: (String) -> Unit) {
+fun SearchBar(query: String, onQueryChange: (String) -> Unit) {
     TextField(
         value = query,
         onValueChange = onQueryChange,

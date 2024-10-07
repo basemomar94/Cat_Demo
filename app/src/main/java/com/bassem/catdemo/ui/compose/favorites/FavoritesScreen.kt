@@ -27,7 +27,7 @@ import com.bassem.catdemo.data.models.Result
 import com.bassem.catdemo.ui.compose.Screen
 import com.bassem.catdemo.ui.compose.home.HomeBottomBar
 import com.bassem.catdemo.ui.compose.home.HomeGrid
-import com.bassem.catdemo.ui.compose.home.HomeSearchBar
+import com.bassem.catdemo.ui.compose.shared.SearchBar
 import com.bassem.catdemo.ui.compose.shared.ErrorMessage
 import com.bassem.catdemo.ui.compose.shared.LoadingIndicator
 import com.bassem.catdemo.utils.Logger
@@ -85,7 +85,7 @@ fun FavoritesScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            HomeSearchBar(query = query, onQueryChange = { new -> query = new })
+            SearchBar(query = query, onQueryChange = { new -> query = new })
 
             if ((averageLifespan ?: 0.0) > 0.0) {
                 LifeSpanText(averageLifespan)
