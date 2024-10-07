@@ -4,17 +4,14 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-10-07T08:19:38.964839800Z">
+        <DropdownSelection timestamp="2024-10-07T10:14:20.110833900Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\basem\.android\avd\Pixel_6_Pro_API_31.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=RFCT50VWV6E" />
             </handle>
           </Target>
         </DropdownSelection>
         <DialogSelection />
-      </SelectionState>
-      <SelectionState runConfigName="test_search_icon_displayed()">
-        <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="test_search_bar_is_displayed()">
         <option name="selectionMode" value="DROPDOWN" />
@@ -26,6 +23,9 @@
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="test_error_message_displayed_when_error_is_not_null()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="test_error_message_displayed_when_error_is_null()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

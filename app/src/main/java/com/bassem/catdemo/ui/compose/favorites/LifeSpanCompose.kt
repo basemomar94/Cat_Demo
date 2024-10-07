@@ -18,17 +18,23 @@ import java.util.Locale
 
 @Composable
 fun LifeSpanText(averageLifespan: Double?) {
-    Text(
-        text = stringResource(
-            R.string.average_lifespan_of_favorites_years,
-            String.format(Locale.getDefault(), "%.1f", averageLifespan)
-        ),
-        style = MaterialTheme.typography.bodyLarge,
-        modifier = Modifier
-            .padding(vertical = 16.dp, horizontal = dimensionResource(id = R.dimen.default_padding))
-            .background(Color(0xFFE8F5E9), shape = RoundedCornerShape(8.dp))
-            .padding(16.dp)
-            .fillMaxWidth(),
-        textAlign = TextAlign.Center
-    )
+    if (averageLifespan != null) {
+        Text(
+            text = stringResource(
+                R.string.average_lifespan_of_favorites_years,
+                String.format(Locale.getDefault(), "%.1f", averageLifespan)
+            ),
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier
+                .padding(
+                    vertical = 16.dp,
+                    horizontal = dimensionResource(id = R.dimen.default_padding)
+                )
+                .background(Color(0xFFE8F5E9), shape = RoundedCornerShape(8.dp))
+                .padding(16.dp)
+                .fillMaxWidth(),
+            textAlign = TextAlign.Center
+        )
+    }
+
 }

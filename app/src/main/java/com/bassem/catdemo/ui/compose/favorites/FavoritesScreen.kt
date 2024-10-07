@@ -48,13 +48,21 @@ fun FavoritesScreen(
     val filteredFavorites = remember { mutableStateListOf<BreedItem>() }
 
     LaunchedEffect(favoritesResult) {
-        if (favoritesResult is Result.Fail) {
-            logger.e("Error fetching favorites: ${(favoritesResult as Result.Fail).reasons}")
-        } else if (favoritesResult is Result.Success) {
-            val favorites = (favoritesResult as Result.Success).breedItems
-            filteredFavorites.clear()
-            filteredFavorites.addAll(favorites)
-            averageLifespan = filteredFavorites.getAverageSpan()
+        when (favoritesResult) {
+            is Result.Loading -> {
+                logger.i("loading favorites")
+            }
+
+            is Result.Fail -> {
+                logger.e("Error fetching favorites: ${(favoritesResult as Result.Fail).reasons}")
+            }
+
+            is Result.Success -> {
+                val favorites = (favoritesResult as Result.Success).breedItems
+                filteredFavorites.clear()
+                filteredFavorites.addAll(favorites)
+                averageLifespan = filteredFavorites.getAverageSpan()
+            }
         }
     }
 
@@ -87,10 +95,6 @@ fun FavoritesScreen(
         ) {
             SearchBar(query = query, onQueryChange = { new -> query = new })
 
-            if ((averageLifespan ?: 0.0) > 0.0) {
-                LifeSpanText(averageLifespan)
-            }
-
             when (favoritesResult) {
                 is Result.Loading -> LoadingIndicator()
                 is Result.Success -> {
@@ -101,6 +105,7 @@ fun FavoritesScreen(
                     if (displayedFavorites.isEmpty()) {
                         ErrorTextCompose(message = stringResource(R.string.no_favorites))
                     } else {
+                        LifeSpanText(averageLifespan)
                         HomeGrid(
                             breeds = displayedFavorites,
                             onClick = onClick,
