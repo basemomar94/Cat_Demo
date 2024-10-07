@@ -13,6 +13,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
+        multiDexEnabled = true
         applicationId = "com.bassem.catdemo"
         minSdk = 28
         targetSdk = 34
@@ -27,13 +28,22 @@ android {
 
 
     buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
+        buildTypes {
+            release {
+                isMinifyEnabled = true
+                proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
+            }
+            create("benchmark") {
+                initWith(getByName("release"))
+                signingConfig = signingConfigs.getByName("debug")
+                isDebuggable = false
+                proguardFiles(
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules-benchmark.pro"
+                )
+            }
         }
+
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -60,6 +70,17 @@ android {
         packaging {
             resources.excludes.add("META-INF/*")
         }
+        managedDevices {
+            devices {
+                maybeCreate<com.android.build.api.dsl.ManagedVirtualDevice>("pixel2api27").apply {
+                    device = "Pixel 2"
+                    apiLevel = 27
+                    systemImageSource = "aosp"
+                }
+            }
+        }
+        unitTests.isReturnDefaultValues = true
+
     }
 
 }
@@ -112,7 +133,8 @@ dependencies {
     androidTestImplementation(libs.mockk.android)
     implementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.junit.jupiter.params)
-    testImplementation (libs.androidx.core.testing.v210)
-    implementation (libs.androidx.paging.runtime)
-    implementation (libs.androidx.paging.compose)
+    testImplementation(libs.androidx.core.testing.v210)
+    implementation(libs.androidx.paging.runtime)
+    implementation(libs.androidx.paging.compose)
+
 }
