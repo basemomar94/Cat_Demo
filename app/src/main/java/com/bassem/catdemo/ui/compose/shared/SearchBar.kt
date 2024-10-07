@@ -24,7 +24,7 @@ import com.bassem.catdemo.R
 @Preview(showBackground = true)
 @Composable
 fun SearchBarPreview() {
-    SearchBar("", {})
+    SearchBar("") {}
 }
 
 @Composable
@@ -61,8 +61,8 @@ fun SearchBar(query: String, onQueryChange: (String) -> Unit) {
         },
         shape = RoundedCornerShape(dimensionResource(id = R.dimen.card_corner_radius)),
         colors = TextFieldDefaults.colors(
-            focusedIndicatorColor = Color.Transparent, // Remove focused underline
-            unfocusedIndicatorColor = Color.Transparent, // Remove unfocused underline
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
             focusedLabelColor = MaterialTheme.colorScheme.primary,
             unfocusedLabelColor = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
         ),

@@ -70,7 +70,7 @@ fun HomeScreen(
 
     Scaffold(
         topBar = { TopAppBar(title = { Text(text = "Cat Breeds") }) },
-        bottomBar = { HomeBottomBar(selectedTab) { selectedTab = it } }
+        bottomBar = { BottomBarCompose(selectedTab) { selectedTab = it } }
     ) { paddingValues ->
         Column(
             modifier = Modifier

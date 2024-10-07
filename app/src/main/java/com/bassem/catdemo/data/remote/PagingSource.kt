@@ -1,10 +1,9 @@
-package com.bassem.catdemo.ui.compose.home
+package com.bassem.catdemo.data.remote
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.bassem.catdemo.data.local.CatsDao
 import com.bassem.catdemo.data.models.BreedItem
-import com.bassem.catdemo.data.remote.CatService
 import com.bassem.catdemo.utils.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

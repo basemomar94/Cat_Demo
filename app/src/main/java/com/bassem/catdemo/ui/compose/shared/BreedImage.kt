@@ -18,7 +18,7 @@ fun BreedImage(imageUrl: String?, modifier: Modifier) {
         modifier =modifier,
         contentScale = ContentScale.Crop,
         loading = placeholder(R.drawable.loading),
-        failure = placeholder(R.drawable.error)
+        failure = placeholder(R.drawable.error),
 
     )
 }

@@ -17,9 +17,6 @@ class HomeViewModel @Inject constructor(private val repo: CatRepo) : ViewModel()
     private var _breedsList = MutableStateFlow<Result<Any?>?>(null)
     val breedsList: Flow<Result<Any?>> get() = _breedsList.filterNotNull()
 
-    init {
-        fetchBreedsList()
-    }
 
      fun fetchBreedsList() = viewModelScope.launch {
         repo.getCatsBreeds().collect { result ->

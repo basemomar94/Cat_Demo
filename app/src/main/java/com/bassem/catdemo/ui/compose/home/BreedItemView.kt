@@ -27,7 +27,7 @@ import com.bassem.catdemo.utils.getImageUrl
 @Preview(showBackground = true)
 @Composable
 fun PreviewBreedItem() {
-    BreedViewItem(
+    BreedViewItemCompose(
         name = "Sphinx Cat",
         imageUrl = "https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg",
         isFavorite = false,
@@ -39,7 +39,7 @@ fun PreviewBreedItem() {
 @Composable
 fun BreedListItem(breedItem: BreedItem, onCardClick: () -> Unit, onFavoriteClick: () -> Unit) {
     with(breedItem) {
-        BreedViewItem(
+        BreedViewItemCompose(
             name = name,
             imageUrl = reference_image_id.getImageUrl(),
             isFavorite = isFavorite,
@@ -51,7 +51,7 @@ fun BreedListItem(breedItem: BreedItem, onCardClick: () -> Unit, onFavoriteClick
 }
 
 @Composable
-fun BreedViewItem(
+fun BreedViewItemCompose(
     name: String,
     imageUrl: String?,
     isFavorite: Boolean,

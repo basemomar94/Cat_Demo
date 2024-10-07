@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import com.bassem.catdemo.data.models.tabs
 
 @Composable
-fun HomeBottomBar(selectedTab: Int, onTabSelected: (Int) -> Unit) {
+fun BottomBarCompose(selectedTab: Int, onTabSelected: (Int) -> Unit) {
     NavigationBar {
         tabs.forEachIndexed { index, tab ->
             NavigationBarItem(

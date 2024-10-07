@@ -9,10 +9,12 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
+import java.io.IOException
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class HomeViewModelTest : BaseTest() {
@@ -34,6 +36,8 @@ class HomeViewModelTest : BaseTest() {
 
         viewModel.fetchBreedsList()
 
+        advanceUntilIdle()
+
         coVerify { mockRepo.getCatsBreeds() }
 
         val emittedResult = viewModel.breedsList.first()
@@ -47,17 +51,37 @@ class HomeViewModelTest : BaseTest() {
 
         val mockBreedsList = mockBreedsList
 
-        val mockResult = Result.Success(mockBreedsList)
+        val exceptedResult = Result.Success(mockBreedsList)
 
-        coEvery { mockRepo.getCatsBreeds() } returns flowOf(mockResult)
+        coEvery { mockRepo.getCatsBreeds() } returns flowOf(exceptedResult)
 
         viewModel.fetchBreedsList()
+
+        advanceUntilIdle()
 
         coVerify { mockRepo.getCatsBreeds() }
 
         val emittedResult = viewModel.breedsList.first()
 
-        assert(emittedResult == mockResult)
+        assert(emittedResult == exceptedResult)
+    }
+
+    @Test
+    fun fetchBreedsList_fail_case() = runTest {
+
+        val exceptedResult = Result.Fail("Fail")
+
+        coEvery { mockRepo.getCatsBreeds() } returns flowOf(exceptedResult)
+
+        viewModel.fetchBreedsList()
+
+        advanceUntilIdle()
+
+        coVerify { mockRepo.getCatsBreeds() }
+
+        val actual  = viewModel.breedsList.first()
+
+        assert(actual == exceptedResult)
     }
 
     @Test

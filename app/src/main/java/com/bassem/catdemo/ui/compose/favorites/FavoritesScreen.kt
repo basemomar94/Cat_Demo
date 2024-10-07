@@ -25,7 +25,7 @@ import com.bassem.catdemo.R
 import com.bassem.catdemo.data.models.BreedItem
 import com.bassem.catdemo.data.models.Result
 import com.bassem.catdemo.ui.compose.Screen
-import com.bassem.catdemo.ui.compose.home.HomeBottomBar
+import com.bassem.catdemo.ui.compose.home.BottomBarCompose
 import com.bassem.catdemo.ui.compose.home.HomeGrid
 import com.bassem.catdemo.ui.compose.shared.SearchBar
 import com.bassem.catdemo.ui.compose.shared.ErrorTextCompose
@@ -86,7 +86,7 @@ fun FavoritesScreen(
 
     Scaffold(
         topBar = { TopAppBar(title = { Text(text = "Favorite Cat Breeds") }) },
-        bottomBar = { HomeBottomBar(selectedTab) { selectedTab = it } }
+        bottomBar = { BottomBarCompose(selectedTab) { selectedTab = it } }
     ) { paddingValues ->
         Column(
             modifier = Modifier
