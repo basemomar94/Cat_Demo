@@ -16,7 +16,7 @@ class ExtensionTest : BaseTest() {
 
     @Test
     fun test_average_life_span() {
-        val actual = mockBreedsList.getAverageSpan()
+        val actual = mockLocalBreedsList.getAverageSpan()
         val expected = 7.0
         Assertions.assertEquals(expected, actual)
 

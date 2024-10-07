@@ -9,12 +9,10 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
-import java.io.IOException
 
 @OptIn(ExperimentalCoroutinesApi::class)
 class HomeViewModelTest : BaseTest() {
@@ -49,7 +47,7 @@ class HomeViewModelTest : BaseTest() {
     @Test
     fun fetchBreedsList_updates_breedsList_with_fetched_results() = runTest {
 
-        val mockBreedsList = mockBreedsList
+        val mockBreedsList = mockLocalBreedsList
 
         val exceptedResult = Result.Success(mockBreedsList)
 

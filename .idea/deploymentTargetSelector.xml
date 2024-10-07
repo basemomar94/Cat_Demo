@@ -13,7 +13,7 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="ErrorTextComposeTest">
+      <SelectionState runConfigName="Tests in 'com'">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>

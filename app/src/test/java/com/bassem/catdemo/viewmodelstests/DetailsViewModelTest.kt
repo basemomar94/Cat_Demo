@@ -31,7 +31,7 @@ class DetailsViewModelTest : BaseTest() {
 
     @Test
     fun test_et_breed_by_id() = runTest {
-        val expectedBreed = mockBreedsList.first()
+        val expectedBreed = mockLocalBreedsList.first()
         coEvery { mockRepo.getBreedById("1") } returns expectedBreed
 
         viewModel.getBreedById()
