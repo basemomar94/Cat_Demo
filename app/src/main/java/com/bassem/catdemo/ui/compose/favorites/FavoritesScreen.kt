@@ -28,7 +28,7 @@ import com.bassem.catdemo.ui.compose.Screen
 import com.bassem.catdemo.ui.compose.home.HomeBottomBar
 import com.bassem.catdemo.ui.compose.home.HomeGrid
 import com.bassem.catdemo.ui.compose.shared.SearchBar
-import com.bassem.catdemo.ui.compose.shared.ErrorMessage
+import com.bassem.catdemo.ui.compose.shared.ErrorTextCompose
 import com.bassem.catdemo.ui.compose.shared.LoadingIndicator
 import com.bassem.catdemo.utils.Logger
 import com.bassem.catdemo.utils.getAverageSpan
@@ -99,7 +99,7 @@ fun FavoritesScreen(
                     }
 
                     if (displayedFavorites.isEmpty()) {
-                        ErrorMessage(message = stringResource(R.string.no_favorites))
+                        ErrorTextCompose(message = stringResource(R.string.no_favorites))
                     } else {
                         HomeGrid(
                             breeds = displayedFavorites,
@@ -115,7 +115,7 @@ fun FavoritesScreen(
                 }
 
                 is Result.Fail -> {
-                    ErrorMessage(message = (favoritesResult as Result.Fail).reasons)
+                    ErrorTextCompose(message = (favoritesResult as Result.Fail).reasons)
                 }
             }
         }

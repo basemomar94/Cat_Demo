@@ -23,7 +23,7 @@ import androidx.navigation.NavController
 import com.bassem.catdemo.data.models.BreedItem
 import com.bassem.catdemo.data.models.Result
 import com.bassem.catdemo.ui.compose.Screen
-import com.bassem.catdemo.ui.compose.shared.ErrorMessage
+import com.bassem.catdemo.ui.compose.shared.ErrorTextCompose
 import com.bassem.catdemo.ui.compose.shared.LoadingIndicator
 import com.bassem.catdemo.ui.compose.shared.SearchBar
 import com.bassem.catdemo.utils.Logger
@@ -106,7 +106,7 @@ fun HomeScreen(
                 }
 
                 is Result.Fail -> {
-                    ErrorMessage(message = (breedsResult as Result.Fail).reasons)
+                    ErrorTextCompose(message = (breedsResult as Result.Fail).reasons)
                 }
             }
         }
