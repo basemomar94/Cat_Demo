@@ -12,9 +12,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bassem.catdemo.R
 import java.util.Locale
+
+@Preview(showBackground = true)
+@Composable
+fun LifeSpanTextCompose(){
+    LifeSpanText(averageLifespan = 5.5)
+}
 
 @Composable
 fun LifeSpanText(averageLifespan: Double?) {

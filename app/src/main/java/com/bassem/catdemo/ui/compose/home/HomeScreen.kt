@@ -23,6 +23,7 @@ import androidx.navigation.NavController
 import com.bassem.catdemo.data.models.BreedItem
 import com.bassem.catdemo.data.models.Result
 import com.bassem.catdemo.ui.compose.Screen
+import com.bassem.catdemo.ui.compose.shared.BottomBarCompose
 import com.bassem.catdemo.ui.compose.shared.ErrorTextCompose
 import com.bassem.catdemo.ui.compose.shared.LoadingIndicator
 import com.bassem.catdemo.ui.compose.shared.SearchBar

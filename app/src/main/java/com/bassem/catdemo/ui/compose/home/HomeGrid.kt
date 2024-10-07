@@ -8,9 +8,16 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.bassem.catdemo.R
 import com.bassem.catdemo.data.models.BreedItem
+import com.bassem.catdemo.utils.AppConstants.mockRemoteList
 
+@Preview(showBackground = true)
+@Composable
+fun HomeGridPreview() {
+    HomeGrid(breeds = mockRemoteList, onClick = {}, onFavoriteClick = {})
+}
 
 @Composable
 fun HomeGrid(

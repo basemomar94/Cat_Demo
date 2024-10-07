@@ -5,8 +5,15 @@ import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bassem.catdemo.utils.getListOfTemperament
+
+@Preview(showBackground = true)
+@Composable
+fun ChipComposePreview() {
+    ChipCompose(temperament = "Loyal")
+}
 
 @Composable
 fun ChipCompose(temperament: String) {

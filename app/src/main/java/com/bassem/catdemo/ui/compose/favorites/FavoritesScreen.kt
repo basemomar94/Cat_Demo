@@ -25,7 +25,7 @@ import com.bassem.catdemo.R
 import com.bassem.catdemo.data.models.BreedItem
 import com.bassem.catdemo.data.models.Result
 import com.bassem.catdemo.ui.compose.Screen
-import com.bassem.catdemo.ui.compose.home.BottomBarCompose
+import com.bassem.catdemo.ui.compose.shared.BottomBarCompose
 import com.bassem.catdemo.ui.compose.home.HomeGrid
 import com.bassem.catdemo.ui.compose.shared.SearchBar
 import com.bassem.catdemo.ui.compose.shared.ErrorTextCompose

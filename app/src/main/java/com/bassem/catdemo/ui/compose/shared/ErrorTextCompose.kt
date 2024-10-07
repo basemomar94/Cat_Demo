@@ -9,7 +9,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.tooling.preview.Preview
 import com.bassem.catdemo.R
+
+@Preview(showBackground = true)
+@Composable
+fun ErrorTextComposePreview() {
+    ErrorTextCompose(message = "Test Error")
+}
 
 @Composable
 fun ErrorTextCompose(message: String?) {
