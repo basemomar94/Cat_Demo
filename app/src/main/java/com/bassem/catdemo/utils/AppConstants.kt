@@ -5,6 +5,7 @@ import com.bassem.catdemo.data.models.BreedItem
 object AppConstants {
 
     const val DATABASE_NAME = "cats_database"
+    const val BREED_ID = "breedId"
 
     val breed1 = BreedItem(
         dbId = 1,

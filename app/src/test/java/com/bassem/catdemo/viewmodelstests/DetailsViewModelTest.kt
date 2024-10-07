@@ -3,8 +3,8 @@ package com.bassem.catdemo.viewmodelstests
 import androidx.lifecycle.SavedStateHandle
 import com.bassem.catdemo.BaseTest
 import com.bassem.catdemo.data.repo.DetailsRep
-import com.bassem.catdemo.ui.compose.details.BREED_ID
 import com.bassem.catdemo.ui.compose.details.DetailsViewModel
+import com.bassem.catdemo.utils.AppConstants.BREED_ID
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
