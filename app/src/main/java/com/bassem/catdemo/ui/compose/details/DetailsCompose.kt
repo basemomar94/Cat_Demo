@@ -8,14 +8,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material3.FilterChip
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,12 +20,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bassem.catdemo.R
 import com.bassem.catdemo.ui.compose.shared.BreedImage
+import com.bassem.catdemo.ui.compose.shared.FavoriteIcon
 
 @Preview(showBackground = true)
 @Composable
@@ -39,7 +35,7 @@ fun DetailsScreenPreview() {
         imageUrl = "",
         description = "test description",
         origin = "Egypt",
-        temperament = "godo",
+        temperament = "Loyal - Social - Funny",
         isFavorite = false
     ) {
 
@@ -70,21 +66,20 @@ fun DetailsCompose(
             Text(
                 text = name,
                 style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.padding(dimensionResource(id = R.dimen.default_padding))
-            )
-            Icon(
                 modifier = Modifier
+                    .padding(dimensionResource(id = R.dimen.default_padding))
                     .align(Alignment.CenterVertically)
-                    .clickable { onFavoriteClick() },
-                imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
-                contentDescription = stringResource(id = R.string.favorite_icon)
             )
 
+            FavoriteIcon(modifier = Modifier
+                .clickable { onFavoriteClick() }
+                .align(Alignment.CenterVertically)
+                .size(35.dp), isFavorite = isFavorite)
         }
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.default_padding)))
         BreedImage(
             imageUrl = imageUrl, modifier = Modifier
-                .clip(RoundedCornerShape(dimensionResource(id = R.dimen.default_padding))) // Rounded corners
+                .clip(RoundedCornerShape(dimensionResource(id = R.dimen.default_padding)))
                 .shadow(elevation = 4.dp)
                 .height(dimensionResource(id = R.dimen.details_image_height))
                 .fillMaxWidth()
@@ -97,17 +92,8 @@ fun DetailsCompose(
             style = MaterialTheme.typography.bodyMedium,
             fontWeight = FontWeight.Bold
         )
-        val temperamentList = temperament.split(",")
+        ChipCompose(temperament = temperament)
 
-        temperamentList.forEach {
-            FilterChip(
-                selected = false,
-                onClick = { },
-                label = { Text(text = it) },
-                modifier = Modifier.padding(vertical = 4.dp)
-            )
-
-        }
     }
 
 }

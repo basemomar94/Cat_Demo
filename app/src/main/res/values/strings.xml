@@ -3,6 +3,7 @@
     <string name="image_of_cat">Image of a cat</string>
     <string name="search_icon">Search Icon</string>
     <string name="favorite_icon">Favorite icon</string>
+    <string name="favorite_icon_with_border">Favorite icon with border</string>
     <string name="clear">Clear</string>
     <string name="search_place_holder">Search with breed name</string>
     <string name="average_lifespan_of_favorites_years">Average Lifespan of Favorites: %1$s years</string>

@@ -18,7 +18,7 @@ abstract class BaseComposeTest {
         id = "23",
         name = "Sphinx",
         origin = "Egypt",
-        temperament = "loyal",
+        temperament = "Loyal - Affectionate - Social",
         reference_image_id = "fad",
         isFavorite = false,
         life_span = "4 - 5"
