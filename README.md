@@ -7,10 +7,10 @@ https://github.com/user-attachments/assets/80539afc-ac5a-4842-a099-53834d769c63
 ### Architecture
 The app follows the MVVM (Model-View-ViewModel) architecture, ensuring separation of concerns and a maintainable codebase:
 
-Model: Represents the data models.
-ViewModel: Manages UI-related data and business logic in a lifecycle-aware manner.
-View (Jetpack Compose): The UI layer is entirely built using Jetpack Compose.
-Repository: Acts as an intermediary between the ViewModel and the data sources (remote and local storage)
+* Model: Represents the data models.
+* ViewModel: Manages UI-related data and business logic in a lifecycle-aware manner.
+* View (Jetpack Compose): The UI layer is entirely built using Jetpack Compose.
+* Repository: Acts as an intermediary between the ViewModel and the data sources (remote and local storage)
 
 ### Used Libraries 
 * Kotlin
