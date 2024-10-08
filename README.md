@@ -1,5 +1,9 @@
 ### Cat Breeds App
 
+
+https://github.com/user-attachments/assets/80539afc-ac5a-4842-a099-53834d769c63
+
+
 ### Architecture
 The app follows the MVVM (Model-View-ViewModel) architecture, ensuring separation of concerns and a maintainable codebase:
 
