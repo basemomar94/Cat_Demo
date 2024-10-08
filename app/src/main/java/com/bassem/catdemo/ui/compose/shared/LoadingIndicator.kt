@@ -1,6 +1,5 @@
 package com.bassem.catdemo.ui.compose.shared
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
@@ -11,7 +10,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.bassem.catdemo.ui.theme.LightGray
 
 @Preview(showBackground = true)
 @Composable
@@ -19,7 +17,7 @@ fun LoadingIndicator() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(LightGray),
+            ,
         contentAlignment = Alignment.Center
     ) {
         CircularProgressIndicator(
