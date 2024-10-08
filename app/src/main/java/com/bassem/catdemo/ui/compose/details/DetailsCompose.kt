@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.bassem.catdemo.R
+import com.bassem.catdemo.ui.compose.home.BackButton
 import com.bassem.catdemo.ui.compose.shared.BreedImage
 import com.bassem.catdemo.ui.compose.shared.FavoriteIcon
 
@@ -36,10 +37,10 @@ fun DetailsScreenPreview() {
         description = "test description",
         origin = "Egypt",
         temperament = "Loyal - Social - Funny",
-        isFavorite = false
-    ) {
-
-    }
+        isFavorite = false,
+        onBackClick = {},
+        onFavoriteClick = {}
+    )
 }
 
 @Composable
@@ -50,7 +51,8 @@ fun DetailsCompose(
     origin: String,
     temperament: String,
     isFavorite: Boolean,
-    onFavoriteClick: () -> Unit
+    onFavoriteClick: () -> Unit,
+    onBackClick: () -> Unit
 ) {
     val scrollState = rememberScrollState()
     Column(
@@ -63,6 +65,7 @@ fun DetailsCompose(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
+            BackButton(onBackClick = {onBackClick()})
             Text(
                 text = name,
                 style = MaterialTheme.typography.titleLarge,

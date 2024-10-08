@@ -88,7 +88,7 @@ fun HomeScreen(
                     val displayedBreeds =
                         if (selectedTab == 1) filteredBreeds.filter { it.isFavorite } else filteredBreeds
                     HomeGrid(
-                        breeds = displayedBreeds,
+                        breeds = displayedBreeds.toMutableList(),
                         onClick = onClick,
                         onFavoriteClick = { item ->
                             viewModel.updateFavoriteStatus(item.id, !item.isFavorite)

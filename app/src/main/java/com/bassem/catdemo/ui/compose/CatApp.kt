@@ -25,7 +25,7 @@ fun CatsNavHost(navHostController: NavHostController) {
             }, navController = navHostController)
         }
         composable(route = Screen.Details.route, arguments = Screen.Details.navArguments) {
-            DetailsScreen()
+            DetailsScreen(navController = navHostController)
         }
 
         composable(route = Screen.Favorites.route) {

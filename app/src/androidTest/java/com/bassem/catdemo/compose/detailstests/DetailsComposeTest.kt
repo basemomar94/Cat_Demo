@@ -19,7 +19,8 @@ class DetailsComposeTest : BaseComposeTest() {
                 description = breed1.description,
                 origin = breed1.origin,
                 temperament = breed1.temperament,
-                isFavorite = breed1.isFavorite
+                isFavorite = breed1.isFavorite,
+                onFavoriteClick = {}
             ) {
 
             }
