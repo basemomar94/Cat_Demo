@@ -7,7 +7,7 @@ object AppConstants {
     const val DATABASE_NAME = "cats_database"
     const val BREED_ID = "breedId"
 
-    val breed1 = BreedItem(
+    private val breed1 = BreedItem(
         dbId = 1,
         description = "test",
         id = "23",

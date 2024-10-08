@@ -16,9 +16,6 @@
       <SelectionState runConfigName="HomeGridPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="ErrorTextComposePreview">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="BackArrowPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>

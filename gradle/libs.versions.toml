@@ -1,9 +1,7 @@
 [versions]
 androidGradlePlugin = "8.4.2"
-coreTestingVersion = "2.1.0"
 gradle-versions = "0.51.0"
 kotlin = "2.0.0"
-junit = "4.13.2"
 activityCompose = "1.9.2"
 composeBom = "2024.09.03"
 coreTesting = "2.2.0"
@@ -28,13 +26,11 @@ retrofit = "2.11.0"
 version-catalog-update = "0.8.4"
 serialization = "1.6.21"
 junitJupiterParams = "5.10.1"
-junitKtx = "1.2.1"
 mockkVersion = "1.13.5"
 
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
-androidx-arch-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
 androidx-compose-bom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
 androidx-compose-foundation = { module = "androidx.compose.foundation:foundation" }
 androidx-compose-foundation-layout = { module = "androidx.compose.foundation:foundation-layout" }
@@ -47,7 +43,7 @@ androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-compose-ui-viewbinding = { module = "androidx.compose.ui:ui-viewbinding" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "ktx" }
-androidx-core-testing-v210 = { module = "androidx.arch.core:core-testing", version.ref = "coreTestingVersion" }
+androidx-core-testing-v210 = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
 androidx-espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "espresso" }
 androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
 androidx-espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "espresso" }
@@ -77,7 +73,6 @@ retrofit2-converter-gson = { module = "com.squareup.retrofit2:converter-gson", v
 junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junitJupiterParams" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockkVersion" }
 mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockkVersion" }
-androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }

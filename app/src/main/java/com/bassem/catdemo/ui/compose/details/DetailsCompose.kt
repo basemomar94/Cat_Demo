@@ -92,9 +92,14 @@ fun DetailsCompose(
         Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.default_padding)))
         Text(
             text = "Origin: $origin",
-            style = MaterialTheme.typography.bodyMedium,
-            fontWeight = FontWeight.Bold
+            style = MaterialTheme.typography.titleSmall,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.padding(4.dp)
         )
+
+        Spacer(modifier = Modifier.height(dimensionResource(id = R.dimen.default_padding)))
+
         ChipCompose(temperament = temperament)
 
     }
