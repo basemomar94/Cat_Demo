@@ -17,16 +17,4 @@ interface CatService {
         @Query("limit") limit: Int,
         @Query("page") page: Int
     ): List<BreedItem>
-
-    companion object {
-        private const val BASE_URL = "https://api.thecatapi.com/v1/"
-
-        fun create(): CatService {
-            val log = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BASIC }
-            val client = OkHttpClient.Builder().addInterceptor(log).build()
-            return Retrofit.Builder().baseUrl(BASE_URL).client(client)
-                .addConverterFactory(GsonConverterFactory.create()).build()
-                .create(CatService::class.java)
-        }
-    }
 }
