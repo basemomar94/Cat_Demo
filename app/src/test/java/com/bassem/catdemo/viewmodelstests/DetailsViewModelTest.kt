@@ -25,16 +25,17 @@ class DetailsViewModelTest : BaseTest() {
     override fun setup() {
         super.setup()
         savedStateHandle = SavedStateHandle(mapOf(BREED_ID to "1"))
-        viewModel = DetailsViewModel(detailsRepo = mockRepo, savedStateHandle = savedStateHandle)
+        viewModel = DetailsViewModel(detailsRepo = mockRepo)
     }
 
 
     @Test
     fun test_et_breed_by_id() = runTest {
+        val id = "test_id"
         val expectedBreed = mockLocalBreedsList.first()
-        coEvery { mockRepo.getBreedById("1") } returns expectedBreed
+        coEvery { mockRepo.getBreedById(id) } returns expectedBreed
 
-        viewModel.getBreedById()
+        viewModel.getBreedById(id)
 
         val breed = viewModel.breed.first()
 
