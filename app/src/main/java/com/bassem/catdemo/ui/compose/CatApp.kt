@@ -24,8 +24,9 @@ fun CatsNavHost(navHostController: NavHostController) {
                 navHostController.navigate(Screen.Details.createRoute(it))
             }, navController = navHostController)
         }
-        composable(route = Screen.Details.route, arguments = Screen.Details.navArguments) {
-            DetailsScreen(navController = navHostController)
+        composable(route = Screen.Details.route, arguments = Screen.Details.navArguments) { backStackEntry ->
+            val breedId = backStackEntry.arguments?.getString("breedId")
+            DetailsScreen(navController = navHostController, breedId = breedId)
         }
 
         composable(route = Screen.Favorites.route) {

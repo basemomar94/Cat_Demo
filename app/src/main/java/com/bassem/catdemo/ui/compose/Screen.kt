@@ -3,6 +3,8 @@ package com.bassem.catdemo.ui.compose
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
+import com.bassem.catdemo.data.models.BreedItem
+import kotlinx.serialization.encodeToString
 
 sealed class Screen(
     val route: String,
@@ -10,7 +12,7 @@ sealed class Screen(
 ) {
     data object Home : Screen("home")
 
-    data object Favorites: Screen("Favorites")
+    data object Favorites : Screen("Favorites")
 
     data object Details : Screen(
         route = "details/{breedId}",

@@ -19,12 +19,12 @@ import com.bassem.catdemo.utils.getImageUrl
 
 @Composable
 fun DetailsScreen(
-    viewModel: DetailsViewModel = hiltViewModel(), navController: NavController
+    viewModel: DetailsViewModel = hiltViewModel(), navController: NavController, breedId: String?
 ) {
     val logger = Logger("DetailsScreen")
     val breedItem by viewModel.breed.collectAsState(initial = null)
     LaunchedEffect(key1 = Unit) {
-        viewModel.getBreedById()
+        viewModel.getBreedById(breedId)
     }
     Scaffold { defaultPadding ->
         Column(modifier = Modifier.padding(defaultPadding)) {

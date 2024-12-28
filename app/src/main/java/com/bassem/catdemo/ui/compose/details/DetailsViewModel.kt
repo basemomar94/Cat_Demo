@@ -1,11 +1,9 @@
 package com.bassem.catdemo.ui.compose.details
 
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bassem.catdemo.data.models.BreedItem
 import com.bassem.catdemo.data.repo.DetailsRep
-import com.bassem.catdemo.utils.AppConstants.BREED_ID
 import com.bassem.catdemo.utils.Logger
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
@@ -17,19 +15,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
-    savedStateHandle: SavedStateHandle,
     private val detailsRepo: DetailsRep,
 ) : ViewModel() {
     private val logger = Logger(this::class.java.simpleName)
 
     private var _breed = MutableStateFlow<BreedItem?>(null)
     val breed: Flow<BreedItem> get() = _breed.filterNotNull()
-    val id = savedStateHandle.get<String>(BREED_ID) ?: ""
 
-
-    fun getBreedById() = viewModelScope.launch {
+    fun getBreedById(id: String?) = viewModelScope.launch {
         logger.d("breed id is $id")
-        _breed.value = detailsRepo.getBreedById(id)
+        _breed.value = id?.let { detailsRepo.getBreedById(it) }
     }
 
     fun updateFavoriteStatus(id: String, isFavorite: Boolean) = viewModelScope.launch {
